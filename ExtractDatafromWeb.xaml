@@ -1,0 +1,733 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ExtractDatafromWeb" this:ExtractDatafromWeb.in_Source="HaNoi" this:ExtractDatafromWeb.in_Destination="TP HCM" this:ExtractDatafromWeb.date_selec="20" this:ExtractDatafromWeb.month_selec="11" this:ExtractDatafromWeb.year_selec="2024" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_Source" Type="InArgument(x:String)" />
+    <x:Property Name="in_Destination" Type="InArgument(x:String)" />
+    <x:Property Name="date_selec" Type="InArgument(x:String)" />
+    <x:Property Name="month_selec" Type="InArgument(x:String)" />
+    <x:Property Name="year_selec" Type="InArgument(x:String)" />
+    <x:Property Name="in_email" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>833.6,2859.2</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ExtractDatafromWeb_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Services.RuntimeAnalyze</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.Platform.Triggers</x:String>
+      <x:String>UiPath.Platform.Triggers.Scope</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath.Excel.Activities.Business</x:String>
+      <x:String>UiPath.Excel.Model</x:String>
+      <x:String>Microsoft.Office.Interop.Excel</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>Microsoft.Office.Interop.Excel</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap:VirtualizedContainerService.HintSize="1124,7356" sap2010:WorkflowViewState.IdRef="Sequence_6">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="emailbody" />
+      <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
+      <Variable x:TypeArguments="sd:DataTable" Name="cleardata" />
+      <Variable x:TypeArguments="x:Int32" Name="count" />
+      <Variable x:TypeArguments="sd:DataTable" Name="ExtractDataTable1" />
+      <Variable x:TypeArguments="x:String" Name="ExtractedTextString" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="1124,167.33333333333334" sap2010:WorkflowViewState.IdRef="KillProcess_2" ProcessName="msedge" />
+    <Sequence DisplayName="FINAL" sap:VirtualizedContainerService.HintSize="1124,4551.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_23">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="thang" />
+        <Variable x:TypeArguments="x:String" Name="nam" />
+        <Variable x:TypeArguments="x:String" Name="textright" />
+        <Variable x:TypeArguments="x:String" Name="thangright" />
+        <Variable x:TypeArguments="x:String" Name="namright" />
+        <Variable x:TypeArguments="x:String" Name="textleft" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge: Traveloka - Nền tảng du lịch hàng đầu Đ" sap:VirtualizedContainerService.HintSize="1090,4459.333333333333" sap2010:WorkflowViewState.IdRef="NApplicationCard_10" InteractionMode="DebuggerApi" ScopeGuid="a3e944cd-4886-44a3-86fd-716ee2a94aec" Version="V2">
+        <uix:NApplicationCard.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1056,4218" sap2010:WorkflowViewState.IdRef="Sequence_17">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Click 'Vé máy bay''" sap:VirtualizedContainerService.HintSize="1022,228" sap2010:WorkflowViewState.IdRef="NClick_31" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a3e944cd-4886-44a3-86fd-716ee2a94aec" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="https://www.traveloka.com/vi-vn" CVScreenId="c3678b0b-6176-4173-aca9-7dcdec97bc47" ContentHash="51eZuhJ5OEq7Cy8zO0_qhg" CvElementArea="279, 510, 232, 72" CvTextArea="351, 534, 133, 30" CvTextArgument="Vé máy bay" CvType="Button" DesignTimeRectangle="355, 528, 129, 36" DesignTimeScaleFactor="1.5" ElementType="Text" FullSelectorArgument="&lt;webctrl aaname='Vé máy bay' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='__next' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='__next' tag='DIV' class='css-901oao r-cwxd7f r-a5wbuh r-b88u0q r-1jkjb r-q4m81j' /&gt;" Guid="f0c8bcfe-fce7-4cd3-8c57-d5f5138577ab" ImageBase64="" InformativeScreenshot="6c9f039ca82e74a300181f89cf6b855f.png" Reference="UYHyyps6D0WiRBG4RzKETQ/uLGMPIknV0mSlDIv76bB7g" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                </uix:NClick.Target>
+                <uix:NClick.VerifyOptions>
+                  <uix:VerifyExecutionOptions DisplayName="Label 'Click 'Vé máy bay''" Mode="Appears">
+                    <uix:VerifyExecutionOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionOptions.Retry>
+                    <uix:VerifyExecutionOptions.Target>
+                      <uix:TargetAnchorable BrowserURL="https://www.traveloka.com/vi-vn" CVScreenId="c3678b0b-6176-4173-aca9-7dcdec97bc47" ContentHash="51eZuhJ5OEq7Cy8zO0_qhg" CvElementArea="279, 510, 232, 72" CvTextArea="351, 534, 133, 30" CvTextArgument="Vé máy bay" CvType="Button" DesignTimeRectangle="355, 528, 129, 36" DesignTimeScaleFactor="1.5" ElementType="Text" FullSelectorArgument="&lt;webctrl aaname='Vé máy bay' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='__next' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='__next' tag='DIV' class='css-901oao r-cwxd7f r-a5wbuh r-b88u0q r-1jkjb r-q4m81j' /&gt;" Guid="f0c8bcfe-fce7-4cd3-8c57-d5f5138577ab" ImageBase64="" InformativeScreenshot="6c9f039ca82e74a300181f89cf6b855f.png" Reference="UYHyyps6D0WiRBG4RzKETQ/uLGMPIknV0mSlDIv76bB7g" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                    </uix:VerifyExecutionOptions.Target>
+                    <uix:VerifyExecutionOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionOptions.Timeout>
+                  </uix:VerifyExecutionOptions>
+                </uix:NClick.VerifyOptions>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NClick>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Click 'Một chiều  Khứ hồi''" sap:VirtualizedContainerService.HintSize="1022,228" sap2010:WorkflowViewState.IdRef="NClick_32" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a3e944cd-4886-44a3-86fd-716ee2a94aec" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="https://www.traveloka.com/vi-vn" CVScreenId="9d223fe8-98cb-4d9d-bc3a-54b0a82f35a5" ContentHash="uBSG4yViYkicUqriJC5Ocg" CvElementArea="223, 520, 204, 47" CvTextArea="241, 534, 167, 21" CvTextArgument="Môt chièu / Khú hòi" CvType="Button" DesignTimeRectangle="228, 524, 195, 40" DesignTimeScaleFactor="1.25" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='__next' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='__next' tag='DIV' class='css-1dbjc4n r-1h84pjw r-jwli3a r-1e081e0 r-5njf8e' aaname='' check:innerText='Một chiều / Khứ hồi' /&gt;" Guid="fc6324c8-93a2-4a36-abab-b38077034825" InformativeScreenshot="8a5a9012a9ab5ad32965504489b3a9f2.png" Reference="UYHyyps6D0WiRBG4RzKETQ/pAD_Ss5JT0KHWcG0mnbz-w" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                </uix:NClick.Target>
+                <uix:NClick.VerifyOptions>
+                  <uix:VerifyExecutionOptions DisplayName="Label 'Một chiều / Khứ hồi'" Mode="Appears">
+                    <uix:VerifyExecutionOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionOptions.Retry>
+                    <uix:VerifyExecutionOptions.Target>
+                      <uix:TargetAnchorable BrowserURL="https://www.traveloka.com/vi-vn" CVScreenId="0bc7c6f4-2427-4f2c-a9f7-736981f99416" CvElementArea="223, 520, 204, 47" CvTextArea="241, 534, 167, 21" CvTextArgument="Môt chièu / Khú hòi" CvType="Button" DesignTimeRectangle="243, 534, 165, 20" DesignTimeScaleFactor="1.25" ElementType="Text" FullSelectorArgument="&lt;webctrl tag='H4' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='H4' type='' class='css-4rbku5 css-901oao r-jwli3a r-a5wbuh r-1b43r93 r-b88u0q r-fdjqy7' aaname='Một chiều / Khứ hồi' check:innerText='Một chiều / Khứ hồi' /&gt;" Guid="f00bf31b-88c9-4e05-9dd9-cb8fe55ebbbb" InformativeScreenshot="26d21a76a87a90f22c4fc6223b50eb76.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                    </uix:VerifyExecutionOptions.Target>
+                    <uix:VerifyExecutionOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionOptions.Timeout>
+                  </uix:VerifyExecutionOptions>
+                </uix:NClick.VerifyOptions>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NClick>
+              <Sequence DisplayName="Xuat phat tai" sap:VirtualizedContainerService.HintSize="1022,833.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <uix:NClick ActivateBefore="True" ClickType="Single" ContinueOnError="True" DisplayName="Click 'Click 'Từ''" sap:VirtualizedContainerService.HintSize="416,228" sap2010:WorkflowViewState.IdRef="NClick_34" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a3e944cd-4886-44a3-86fd-716ee2a94aec" Version="V4">
+                  <uix:NClick.Target>
+                    <uix:TargetAnchorable BrowserURL="https://www.traveloka.com/vi-vn" CVScreenId="8263d7a8-6d6b-4d79-a968-6b52c1c61468" ContentHash="rowawFHiL0Cr-pQCVrVH4Q" CvTextArea="300, 369, 132, 21" CvTextArgument="TP HCM (SGN)" CvType="Text" DesignTimeRectangle="241, 347, 331, 62" DesignTimeScaleFactor="1.25" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' isleaf='1' parentid='__next' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' isleaf='1' parentid='__next' tag='DIV' class='css-1dbjc4n r-14lw9ot r-1l31rp8 r-kdyh1x r-rs99b7 r-1p0dtai r-1d2f490 r-u8s1d r-zchlnj r-ipm5af r-14qw7yl r-z2knda r-1wyyakw' aaname='' /&gt;" Guid="e055976f-678d-41c9-8ec9-44b094189c05" InformativeScreenshot="64225a4c6b19bbf3d3def00590d3aac5.png" Reference="UYHyyps6D0WiRBG4RzKETQ/JPHLSlGKXEmQRjB1YCBrhQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                  </uix:NClick.Target>
+                  <uix:NClick.VerifyOptions>
+                    <uix:VerifyExecutionOptions DisplayName="Element 'Click 'Từ''" Mode="Appears">
+                      <uix:VerifyExecutionOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionOptions.Retry>
+                      <uix:VerifyExecutionOptions.Target>
+                        <uix:TargetAnchorable BrowserURL="https://www.traveloka.com/vi-vn" CVScreenId="8263d7a8-6d6b-4d79-a968-6b52c1c61468" ContentHash="rowawFHiL0Cr-pQCVrVH4Q" CvTextArea="300, 369, 132, 21" CvTextArgument="TP HCM (SGN)" CvType="Text" DesignTimeRectangle="241, 347, 331, 62" DesignTimeScaleFactor="1.25" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' isleaf='1' parentid='__next' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' isleaf='1' parentid='__next' tag='DIV' class='css-1dbjc4n r-14lw9ot r-1l31rp8 r-kdyh1x r-rs99b7 r-1p0dtai r-1d2f490 r-u8s1d r-zchlnj r-ipm5af r-14qw7yl r-z2knda r-1wyyakw' aaname='' /&gt;" Guid="e055976f-678d-41c9-8ec9-44b094189c05" InformativeScreenshot="64225a4c6b19bbf3d3def00590d3aac5.png" Reference="UYHyyps6D0WiRBG4RzKETQ/JPHLSlGKXEmQRjB1YCBrhQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                      </uix:VerifyExecutionOptions.Target>
+                      <uix:VerifyExecutionOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionOptions.Timeout>
+                    </uix:VerifyExecutionOptions>
+                  </uix:NClick.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NClick>
+                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Click 'Từ''" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="416,289.3333333333333" sap2010:WorkflowViewState.IdRef="NTypeInto_6" ScopeIdentifier="a3e944cd-4886-44a3-86fd-716ee2a94aec" Text="[in_Source]" Version="V4">
+                  <uix:NTypeInto.Target>
+                    <uix:TargetAnchorable BrowserURL="https://www.traveloka.com/vi-vn" CVScreenId="8263d7a8-6d6b-4d79-a968-6b52c1c61468" ContentHash="rowawFHiL0Cr-pQCVrVH4Q" CvTextArea="300, 369, 132, 21" CvTextArgument="TP HCM (SGN)" CvType="Text" DesignTimeRectangle="241, 347, 331, 62" DesignTimeScaleFactor="1.25" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' isleaf='1' parentid='__next' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' isleaf='1' parentid='__next' tag='DIV' class='css-1dbjc4n r-14lw9ot r-1l31rp8 r-kdyh1x r-rs99b7 r-1p0dtai r-1d2f490 r-u8s1d r-zchlnj r-ipm5af r-14qw7yl r-z2knda r-1wyyakw' aaname='' /&gt;" Guid="e055976f-678d-41c9-8ec9-44b094189c05" InformativeScreenshot="64225a4c6b19bbf3d3def00590d3aac5.png" Reference="UYHyyps6D0WiRBG4RzKETQ/JPHLSlGKXEmQRjB1YCBrhQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                  </uix:NTypeInto.Target>
+                  <uix:NTypeInto.VerifyOptions>
+                    <uix:VerifyExecutionTypeIntoOptions DisplayName="Input 'Hà Nội (HAN)'" Mode="Appears">
+                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <uix:VerifyExecutionTypeIntoOptions.Target>
+                        <uix:TargetAnchorable BrowserURL="https://www.traveloka.com/vi-vn" CVScreenId="64902856-0bf7-4df6-b951-688a6261bf35" CvTextArea="168, 708, 152, 27" CvTextArgument="Hà Nôi (HAN)" CvType="Text" DesignTimeRectangle="170, 700, 313, 36" DesignTimeScaleFactor="1.5" ElementType="InputBox" FullSelectorArgument="&lt;webctrl tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='text' class='css-11aywtz r-cwxd7f r-13awgt0 r-a5wbuh r-majxgm r-bcqeeo r-1ny4l3l r-10paoce r-13n6l4s' placeholder='Origin' aaname='' check:text='Hà Nội (HAN)' /&gt;" Guid="53f436d8-b978-44f1-a220-f63a36790593" InformativeScreenshot="0d66c786c5e74aafc13423d307e938a2.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                      </uix:VerifyExecutionTypeIntoOptions.Target>
+                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    </uix:VerifyExecutionTypeIntoOptions>
+                  </uix:NTypeInto.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NTypeInto>
+                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click lựa chọn đầu tiên" sap:VirtualizedContainerService.HintSize="416,221.33333333333334" sap2010:WorkflowViewState.IdRef="NClick_35" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a3e944cd-4886-44a3-86fd-716ee2a94aec" Version="V4">
+                  <uix:NClick.Target>
+                    <uix:TargetAnchorable BrowserURL="traveloka.com/vi-vn" CVScreenId="d397c7ab-98b2-4de0-9be4-bd071b6a2462" CvElementArea="113, 776, 33, 32" CvTextArea="117, 779, 25, 25" CvType="Icon" DesignTimeRectangle="118, 780, 26, 26" DesignTimeScaleFactor="1.5" ElementType="Icon" FuzzyMatches="10000" FuzzySelectorArgument="&lt;webctrl type='' tag='path' class='' aaname='' /&gt;" Guid="66e22cc9-bcf1-4458-a4f1-0ebd1df948ee" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAJESURBVEhL1ZVbT1NBFIX9ud4w4AULJEgiSCKgltoWaAUvEAWlIWhQkIstlTbFWqPGikZjWh+07en1B2zPmjiTM2d2e9AQEx++l+6115ozl91jzVaL/gX/Z9CH/AEtPIxRMDJHqcwrrXZkQZvxXTpx9iId7+lVbOzEVV0EWdUqXQ/PCOFEICyafpRKmlEnllefaAGS8UBIaUTQ+/xHQyRDt3eT9LNc1owljWaTZufvG72SUHROaUVQvdGgq/4gKwYi9OYUbdlfWqpURKNlVckfjrB6cKZ3gD5/+aoHAawu9niNTp7zsY0S1K+Fpmlk/AZbB1hYNvdGhWhBEqzi0ugYa3BY4sk9zRMYQaBWr9NibMXz6zhWn64bfoANkuQPPtHA5VHWkOPugyXWB3QMAlatRvcWH7HGTnAxcM6cB/AMArj+7sfoZnIqyvZKPIPKlkW+oRHW3Mnp831Cy3kAzyDMLc6YI/EyxXoAFVSyX39g5pZ4uJIrE37WELcRD9L9ezAyawRIVNDaxqbRyOEbGhZn9twemO7aKXv7KvbEcAZIVFAm+9podBOYjqoRBDA03ZpEKq3qTrQzyr19R5E7C9R1od8wGLZHjlMLCsXvxhY6B6kT9jIk9tJaM8CZcdr17ReaDous2H87bh0bBPazOeruG/QMAmOT+uRPpjOGpm0QmF9aPlRQoVikLscWhqK3DU3HoG8F2+D3eeEPjtNInm3tqKAeeyfc9Y5BAFcZV7/dtXWCMfRXX/SnYKhiF7jakQa1p0W/AP+puUVVbqIkAAAAAElFTkSuQmCC" InformativeScreenshot="47a9c50740600c660b66c0ddb2ec0d3d.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                  </uix:NClick.Target>
+                  <uix:NClick.VerifyOptions>
+                    <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                      <uix:VerifyExecutionOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionOptions.Retry>
+                      <uix:VerifyExecutionOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionOptions.Timeout>
+                    </uix:VerifyExecutionOptions>
+                  </uix:NClick.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NClick>
+              </Sequence>
+              <Sequence DisplayName="Diem den" sap:VirtualizedContainerService.HintSize="1022,833.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <uix:NClick ActivateBefore="True" ClickType="Single" ContinueOnError="True" DisplayName="Click 'Click 'Đến''" sap:VirtualizedContainerService.HintSize="416,228" sap2010:WorkflowViewState.IdRef="NClick_36" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a3e944cd-4886-44a3-86fd-716ee2a94aec" Version="V4">
+                  <uix:NClick.Target>
+                    <uix:TargetAnchorable BrowserURL="https://www.traveloka.com/vi-vn" CVScreenId="0ce23ee7-41cf-4747-9012-f4a681cf14e5" ContentHash="knmoFnA6QkWnghAHEBjJ8g" CvTextArea="640, 369, 126, 21" CvType="Text" DesignTimeRectangle="572, 347, 331, 62" DesignTimeScaleFactor="1.25" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='2' isleaf='1' parentid='__next' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' class='css-1dbjc4n r-14lw9ot r-1l31rp8 r-kdyh1x r-rs99b7 r-1p0dtai r-1d2f490 r-u8s1d r-zchlnj r-ipm5af r-14qw7yl r-z2knda r-1wyyakw' isleaf='1' parentid='__next' tag='DIV' aaname='' /&gt;" Guid="e93a374c-97cc-4337-ad80-8e8cf0ad0d85" InformativeScreenshot="7d00bf559e5cb729c18bac59bffe3abf.png" Reference="UYHyyps6D0WiRBG4RzKETQ/Zon_9GiqDUu-y6m6Gb9QrA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                      <uix:TargetAnchorable.CvTextArgument>
+                        <InArgument x:TypeArguments="x:String">
+                          <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_2">
+                            <Literal.Result>
+                              <OutArgument x:TypeArguments="x:String" />
+                            </Literal.Result>Hà Nôi (HAN)</Literal>
+                        </InArgument>
+                      </uix:TargetAnchorable.CvTextArgument>
+                    </uix:TargetAnchorable>
+                  </uix:NClick.Target>
+                  <uix:NClick.VerifyOptions>
+                    <uix:VerifyExecutionOptions DisplayName="Element 'Click 'Đến''" Mode="Appears">
+                      <uix:VerifyExecutionOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionOptions.Retry>
+                      <uix:VerifyExecutionOptions.Target>
+                        <uix:TargetAnchorable BrowserURL="https://www.traveloka.com/vi-vn" CVScreenId="0ce23ee7-41cf-4747-9012-f4a681cf14e5" ContentHash="knmoFnA6QkWnghAHEBjJ8g" CvTextArea="640, 369, 126, 21" CvTextArgument="Hà Nôi (HAN)" CvType="Text" DesignTimeRectangle="572, 347, 331, 62" DesignTimeScaleFactor="1.25" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='2' isleaf='1' parentid='__next' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' class='css-1dbjc4n r-14lw9ot r-1l31rp8 r-kdyh1x r-rs99b7 r-1p0dtai r-1d2f490 r-u8s1d r-zchlnj r-ipm5af r-14qw7yl r-z2knda r-1wyyakw' isleaf='1' parentid='__next' tag='DIV' aaname='' /&gt;" Guid="e93a374c-97cc-4337-ad80-8e8cf0ad0d85" InformativeScreenshot="7d00bf559e5cb729c18bac59bffe3abf.png" Reference="UYHyyps6D0WiRBG4RzKETQ/Zon_9GiqDUu-y6m6Gb9QrA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                      </uix:VerifyExecutionOptions.Target>
+                      <uix:VerifyExecutionOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionOptions.Timeout>
+                    </uix:VerifyExecutionOptions>
+                  </uix:NClick.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NClick>
+                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Type Into 'Đến''" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="416,289.3333333333333" sap2010:WorkflowViewState.IdRef="NTypeInto_7" ScopeIdentifier="a3e944cd-4886-44a3-86fd-716ee2a94aec" Text="[in_Destination]" Version="V4">
+                  <uix:NTypeInto.Target>
+                    <uix:TargetAnchorable BrowserURL="https://www.traveloka.com/vi-vn" CVScreenId="f1494ff8-fefb-4341-ae58-174014c125c7" ContentHash="DC3HTNLLeU-Wm_S303pASg" CvTextArea="641, 369, 125, 21" CvTextArgument="Hà Nôi (HAN)" CvType="Text" DesignTimeRectangle="572, 347, 331, 62" DesignTimeScaleFactor="1.25" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='2' isleaf='1' parentid='__next' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' class='css-1dbjc4n r-14lw9ot r-kdyh1x r-d045u9 r-1p0dtai r-1d2f490 r-u8s1d r-zchlnj r-ipm5af r-14qw7yl r-z2knda r-1wyyakw' isleaf='1' parentid='__next' tag='DIV' aaname='' /&gt;" Guid="8605fa1d-e96a-480c-87cd-b06d6b8af603" InformativeScreenshot="17bf735507a243f837cce54ac8b3ce30.png" Reference="UYHyyps6D0WiRBG4RzKETQ/4tU2chkU3U-emPs7R7Dmkw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                  </uix:NTypeInto.Target>
+                  <uix:NTypeInto.VerifyOptions>
+                    <uix:VerifyExecutionTypeIntoOptions DisplayName="Input 'TP HCM'" Mode="Appears">
+                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <uix:VerifyExecutionTypeIntoOptions.Target>
+                        <uix:TargetAnchorable BrowserURL="https://www.traveloka.com/vi-vn" CVScreenId="09f2ce47-55c0-4425-9451-0e8f4ed0141e" CvTextArea="576, 651, 90, 21" CvTextArgument="TP HCM" CvType="Text" DesignTimeRectangle="579, 642, 300, 36" DesignTimeScaleFactor="1.5" ElementType="InputBox" FullSelectorArgument="&lt;webctrl idx='2' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl type='text' tag='INPUT' class='css-11aywtz r-cwxd7f r-13awgt0 r-a5wbuh r-majxgm r-bcqeeo r-1ny4l3l r-10paoce r-13n6l4s' placeholder='Destination' aaname='' check:text='TP HCM' /&gt;" Guid="14757654-2d3f-463b-83a5-9d9c6c203619" InformativeScreenshot="a806c859321213e3ee837f0dff4598fa.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                      </uix:VerifyExecutionTypeIntoOptions.Target>
+                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    </uix:VerifyExecutionTypeIntoOptions>
+                  </uix:NTypeInto.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NTypeInto>
+                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click lựa chọn đầu tiên" sap:VirtualizedContainerService.HintSize="416,221.33333333333334" sap2010:WorkflowViewState.IdRef="NClick_37" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a3e944cd-4886-44a3-86fd-716ee2a94aec" Version="V4">
+                  <uix:NClick.Target>
+                    <uix:TargetAnchorable BrowserURL="traveloka.com/vi-vn" CVScreenId="86c59848-57c9-487b-a783-7ebfe1be38e8" CvElementArea="113, 775, 33, 33" CvTextArea="117, 779, 25, 25" CvType="Icon" DesignTimeRectangle="118, 778, 26, 26" DesignTimeScaleFactor="1.5" ElementType="Icon" FuzzySelectorArgument="&lt;webctrl type='' tag='path' class='' aaname='' /&gt;" Guid="10a9959c-91ef-471d-9735-b57c1099fc71" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAJASURBVEhL7ZVbTxNRFIX9ud4w4gWLJEoiSCKgltoWaAUvEAWlMWiQO7RU2lRrjRorGo1pfdC20+sP2M468ZzMmbOZQWN84uF76V57rTPnsnuk3enQ/+AwyJMPxT2afZSgcGyaMrlXWu2fBa0nd+jYmQt0tLtHsbqVVHURZNXrdCM6KYSjoaho+lGpaEZeLCw+0wIkI6GI0oig98WPhkiGbu6k6We1qhlLWu02Tc08MHolkfi00oqgZqtF14JhVgxE6K1x2rC/tFKriUbLqlMwGmP14FRPH33+8lUPAlhd4ukSHT8bYBslqF+PTNDgyE22DrCwfOGNCtGCJFjF5aFh1uCgJNO7micwgkCj2aS5xBPfr+NYfL5i+AE2SFLc+0R9V4ZYQ457D+dZH+AZBKxGg+7PPWaNneBi4Jw5D+AbBHD93Y/Rzdh4nO2V+AZVLYsC/YOsuZOT53qFlvMAvkGYW5wxR+pFhvUAKqhiv/7Q5G3xcCVXR4OsIW4jHqT793BsygiQqKCl1XWjkSPQPyDObM0emO7aCXv7avbEcAZIVFAu/9podBOaiKsRBDA03ZpUJqvqTrQzKrx9R7G7s9R1/qJhMGCPHKcWlMrfjS10DlIn7GVI7Wa1ZoAz47Qrm9uaDous2X87bh0bBF7mC3S695JvEBge0yd/OpszNPsGgZn5hQMFlcpl6nJsYSR+x9B4Bn0r2Qa/zwt/cJxGsryxpYK67Z1w1z2DAK4yrv5+19YJxtBffdGfgqGKXTBrHfoF5NS5RW70YToAAAAASUVORK5CYII=" InformativeScreenshot="ecb809efd7ca49e4c281ad2dc2c5df3e.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target CVScreenId="86c59848-57c9-487b-a783-7ebfe1be38e8" CvElementArea="526, 697, 42, 40" CvType="Icon" DesignTimeRectangle="535, 705, 27, 22" ElementType="Icon" FuzzySelectorArgument="&lt;webctrl type='' class='' tag='path' aaname='' /&gt;" Guid="cb93ab4a-c450-4d38-820c-55a9667a0a29" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAB8AAAAaCAYAAABPY4eKAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAALISURBVEhLxVZJjAxRGLYcxHIQIRyQcLAl4kpEcMBBItY4CxEicXCQuAgX4iIiJmYxzFjGMpYIY4RhxDKW2MZgJsZhMLHNGMNUdS1dVb/3/V3V/aq6umt6uju+5Dt0v5f3/ftfg+g/Iqv4H8OhubUxGnykjyZXKfTwq+WeFAZZxV912SzscfpplSzHPSwAsor36I5PHKx8b7qn+SMy51OqVZ/4JBF+03YP80Sk+Np6zScOHm4ujPeR4vueG2niY48ppBWg9pLirT12aDHd/myliYMHXhjujYGDxdffTIR24eUY/ykjrOhAeK+Y+ZU+iw8tST16oT3OBzKmnvQXncc9T/PznsXlB2edUflAxjqp6Oa5QwccVaZQtzZw79PEwfMB7/eL/Hpn2+7p3G7e752PdPdW7mDxCcdTj4HjKxVaJPLvEdHwzhZcilFVazz5e/jRPjbulihMjONcwOJLr6ZCGcXR5QrZQmOmZJDM2TUqbbyjU9lbk95023w3E1h8xwM99KEwzr+Y6Ii6jvAWDBLGrr6hcWSCYPFmYaFc8dVtcWrstNLY9M2imFQObb9tKhUeog5QiCNL/cJBIiLyaGZxYPv9lPewtvydSb055hC3YRDadVeTQctEOmWnQPxnuEFIikNo4gl/4YFzzqq04rpGm+7q/ODB1yadEpHB5MPK7VQcimdZNB1/HdoqIiO/iXeApDjQJXp2+bX+F59MRGua2PfohlUix5uFsbufGHRIGFvzIU5LAkX98qftF/dQIUKOyyMicpgPV9Zp4eIeUByPv1ucw5IWk/Y+M7i4MPEWX0n0/zgx44eEPB5F7Ias4v0FevlHzKGWXzZ3xTkRZux8hH1Lo05rRBqwtGaItIypUHgsIx0FEQ8DDNjQoFN7b+ZqLIp4/afUAMJnWKYPj6KIBzum9mP6mgaKIt7wxaJhYuFAGLM+3HOifxETGuZB8y1pAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, CV" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NClick.Target>
+                  <uix:NClick.VerifyOptions>
+                    <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                      <uix:VerifyExecutionOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionOptions.Retry>
+                      <uix:VerifyExecutionOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionOptions.Timeout>
+                    </uix:VerifyExecutionOptions>
+                  </uix:NClick.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NClick>
+              </Sequence>
+              <Sequence DisplayName="Lua chon ngay xuat phat" sap:VirtualizedContainerService.HintSize="1022,940" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'DIV'" sap:VirtualizedContainerService.HintSize="988,228" sap2010:WorkflowViewState.IdRef="NClick_38" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a3e944cd-4886-44a3-86fd-716ee2a94aec" Version="V4">
+                  <uix:NClick.Target>
+                    <uix:TargetAnchorable BrowserURL="traveloka.com/vi-vn" CVScreenId="c7cc9f06-9c5e-4486-91c3-14690f9578b2" CvElementArea="933, 847, 39, 40" CvType="Icon" DesignTimeRectangle="940, 853, 27, 29" DesignTimeScaleFactor="1.5" ElementType="Icon" FuzzySelectorArgument="&lt;webctrl type='' tag='path' class='' aaname='' /&gt;" Guid="326e5d1b-3bc1-4e9b-86a5-eee8f53da061" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAB8AAAAhCAYAAAAh3nDkAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAKASURBVFhHzZe7axVBFMZXfIEg2oiV2GitgmCr2FmonYWFjY0IFj4aK9HCf8DEGBWUKGoEDURBFDQkiohEBaP4wM6kiC/k7t3d+8pxvtmcu2fmzsqs3I33Bx+z5+ye+e7snZ3ZDeg/kms+G83RxXd13RbFtzbXfPPNKi06V9FtUXxrc81RzCqKb23bfDqco6EPDTrzskanXtSMDhAXkV2LPq99bNBM1fwbtPl1dWLVYGgUlaHVymP4c0Mbg+DNtxYt7nNfXIaW9ldo6kcrNd81GrVPrLkU0tGJRN+qFQNpDq28pT6ya9En+mafvffj1Hzt5Sz5Wt0F5tBYQisvhHRYtUVx1aJv9ll3JdS5gBNQ2dhehrl9+7ot6dVhvpDqLXPXreqmpFeHednYXrnmT74227KpqydyfLqphWObL79bug6txPZymh98nBgXImZi9VvWX83WBhwjx/S9rRu1iBmZB07zHXezVQ9CzGC08hyEHLNzxKxFzMg86D3zv932qtqUloiNaPn5CkXZRkUnn5uzGjEj8+CfJhxej8bUaKHvsblHN1U4OZtOuFeqRczYXrnmZWB79Z45ns8Dj2LafifSrf28Dqo3U0wkCMe+2F5O8/0PY+NCxMynX9m+zELOB1kDnOYYscwjZjCR5DnINSldyBrgNN/3wBw5Yub9z86RI+eDrAFO84mZJu2+l/7ne9T7FmLJkfFELzzQsaf+r1m2V7BMvU1yQi4W3QZ9sw8WJhBsmf+0gQam6lTz+/sKkag++8WGs/VW+hkVnFZfE5xcKJ2dTJfcACPddCMbfdnadjuixvz81J9L2I+Pq4mzYahqbBrdEvrcqPo+8SwRez/RH+LNKkdoj6F3AAAAAElFTkSuQmCC" InformativeScreenshot="f32ff0a683e8811c83dd68aa00654cc7.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target CVScreenId="c7cc9f06-9c5e-4486-91c3-14690f9578b2" CvTextArea="917, 786, 77, 24" CvTextArgument="Ngày đi" CvType="Text" DesignTimeRectangle="919, 780, 401, 30" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='depatureDate' tag='DIV' type='' class='css-901oao css-cens5h r-jwli3a r-a5wbuh r-1b43r93 r-majxgm r-rjixqe r-5oul0u r-fdjqy7 r-13qz1uu' aaname='Ngày đi' check:innerText='Ngày đi' /&gt;" Guid="52fa4949-d0cb-4990-8a60-2b79b92d2294" SearchSteps="FuzzySelector, CV" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NClick.Target>
+                  <uix:NClick.VerifyOptions>
+                    <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                      <uix:VerifyExecutionOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionOptions.Retry>
+                      <uix:VerifyExecutionOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionOptions.Timeout>
+                    </uix:VerifyExecutionOptions>
+                  </uix:NClick.VerifyOptions>
+                </uix:NClick>
+                <Sequence DisplayName="chooseDate" sap:VirtualizedContainerService.HintSize="988,617.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NCheckState DisplayName="Check App State of Date" sap:VirtualizedContainerService.HintSize="954,529.3333333333334" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="a3e944cd-4886-44a3-86fd-716ee2a94aec" Version="V4">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,284" sap2010:WorkflowViewState.IdRef="Sequence_56">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '20'" sap:VirtualizedContainerService.HintSize="416,221.33333333333334" sap2010:WorkflowViewState.IdRef="NClick_45" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a3e944cd-4886-44a3-86fd-716ee2a94aec" Version="V4">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="traveloka.com/vi-vn" CVScreenId="55e15d10-1ce7-4058-8345-1787d3eb17b4" DesignTimeRectangle="958, 856, 20, 30" DesignTimeScaleFactor="1.5" ElementType="Text" FuzzySelectorArgument="[string.Format(&quot;&lt;webctrl aaname='{0}' parentid='__next' tag='DIV' type='' class='css-901oao r-cwxd7f r-a5wbuh r-1b43r93 r-majxgm r-rjixqe r-q4m81j' check:innerText='{0}' /&gt;&quot;, date_selec)]" Guid="75debd68-39f4-48e6-9b17-ebe5db4edd1e" InformativeScreenshot="1d141e3b228259888970546d82d85388.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á' /&gt;" SearchSteps="FuzzySelector" Version="V5" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                  <uix:Target CVScreenId="55e15d10-1ce7-4058-8345-1787d3eb17b4" CvTextArea="1043, 410, 221, 27" CvTextArgument="tháng 11 năm 2024" CvType="Text" DesignTimeRectangle="1045, 519, 219, 30" ElementType="Text" FuzzySelectorArgument="[string.Format(&quot;&lt;webctrl tag='H3' type='' class='css-4rbku5 css-901oao r-cwxd7f r-a5wbuh r-b88u0q r-rjixqe r-fdjqy7' aaname='tháng {0} năm {1}' check:innerText='tháng {0} năm {1}' /&gt;&quot;, month_selec, year_selec)]" Guid="566db2d9-4bf9-45f2-9935-df3b38c193c5" SearchSteps="FuzzySelector, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NClick.Target>
+                          <uix:NClick.VerifyOptions>
+                            <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                              <uix:VerifyExecutionOptions.Retry>
+                                <InArgument x:TypeArguments="x:Boolean" />
+                              </uix:VerifyExecutionOptions.Retry>
+                              <uix:VerifyExecutionOptions.Timeout>
+                                <InArgument x:TypeArguments="x:Double" />
+                              </uix:VerifyExecutionOptions.Timeout>
+                            </uix:VerifyExecutionOptions>
+                          </uix:NClick.VerifyOptions>
+                        </uix:NClick>
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,284" sap2010:WorkflowViewState.IdRef="Sequence_57">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click next" sap:VirtualizedContainerService.HintSize="416,221.33333333333334" sap2010:WorkflowViewState.IdRef="NClick_46" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a3e944cd-4886-44a3-86fd-716ee2a94aec" Version="V4">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="traveloka.com/vi-vn" CVScreenId="bd3c8785-0b35-426a-8042-edc9829a6f32" CvElementArea="1799, 783, 26, 31" CvType="ArrowButton" DesignTimeRectangle="1800, 784, 25, 29" DesignTimeScaleFactor="1.5" ElementType="Icon" FuzzySelectorArgument="&lt;webctrl type='' class='' tag='svg' aaname='' /&gt;" Guid="098a263c-2c3a-4631-943b-3e64c43683d1" InformativeScreenshot="3d8469611bb4ae40d3c1f0648c9aace0.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CVScreenId="bd3c8785-0b35-426a-8042-edc9829a6f32" CvElementArea="1738, 673, 91, 87" CvType="Button" DesignTimeRectangle="1767, 700, 36, 36" ElementType="Icon" FuzzySelectorArgument="&lt;webctrl type='' class='' tag='svg' aaname='' /&gt;" Guid="72ed95e1-4935-4767-b3ff-af1eea2e17f9" SearchSteps="FuzzySelector, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NClick.Target>
+                          <uix:NClick.VerifyOptions>
+                            <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                              <uix:VerifyExecutionOptions.Retry>
+                                <InArgument x:TypeArguments="x:Boolean" />
+                              </uix:VerifyExecutionOptions.Retry>
+                              <uix:VerifyExecutionOptions.Timeout>
+                                <InArgument x:TypeArguments="x:Double" />
+                              </uix:VerifyExecutionOptions.Timeout>
+                            </uix:VerifyExecutionOptions>
+                          </uix:NClick.VerifyOptions>
+                        </uix:NClick>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable BrowserURL="traveloka.com/vi-vn" CVScreenId="f8b8131d-c2ca-4fc8-96a3-cdd3f854528d" CvTextArea="1031, 597, 220, 27" CvTextArgument="[string.Format(&quot;tháng {0} năm {1}&quot;, month_selec, year_selec)]" CvType="Text" DesignTimeRectangle="1045, 483, 219, 30" DesignTimeScaleFactor="1.5" ElementType="Text" FuzzySelectorArgument="[string.Format(&quot;&lt;webctrl tag='H3' type='' class='css-4rbku5 css-901oao r-cwxd7f r-a5wbuh r-b88u0q r-rjixqe r-fdjqy7' aaname='tháng {0} năm {1}' check:innerText='tháng {0} năm {1}' /&gt;&quot;, month_selec, year_selec)]" Guid="5a6ec68f-4a92-4176-8789-b43071b9ee6b" ImageBase64="" InformativeScreenshot="f5d9a891c80a1eb22112004592696ac1.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                    </uix:NCheckState.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NCheckState>
+                </Sequence>
+              </Sequence>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Find'" sap:VirtualizedContainerService.HintSize="1022,228" sap2010:WorkflowViewState.IdRef="NClick_33" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a3e944cd-4886-44a3-86fd-716ee2a94aec" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="https://www.traveloka.com/vi-vn" CVScreenId="ec534b9c-4e3b-4093-af68-dbbde56f3227" CvElementArea="1740, 673, 90, 88" CvType="Button" DesignTimeRectangle="1771, 705, 26, 26" DesignTimeScaleFactor="1.5" ElementType="Icon" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;svg&amp;gt;path' idx='5' tag='path' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' class='' tag='path' aaname='' /&gt;" Guid="8840801d-a842-4caf-a9fe-f0720ab8c1ad" InformativeScreenshot="5ccac3fcf21a6fd11909b7bb1d9a2894.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target CVScreenId="ec534b9c-4e3b-4093-af68-dbbde56f3227" CvElementArea="1740, 673, 90, 88" CvType="Button" DesignTimeRectangle="1749, 682, 72, 72" ElementType="Button" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tag='DIV' class='css-18t94o4 css-1dbjc4n r-1loqt21 r-10paoce r-1e081e0 r-5njf8e r-1otgn73 r-lrvibr' aaname='' /&gt;" Guid="bf53a9ee-f101-4bdd-b697-a524fdc2521a" SearchSteps="FuzzySelector, CV" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NClick.Target>
+                <uix:NClick.VerifyOptions>
+                  <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                    <uix:VerifyExecutionOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionOptions.Retry>
+                    <uix:VerifyExecutionOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionOptions.Timeout>
+                  </uix:VerifyExecutionOptions>
+                </uix:NClick.VerifyOptions>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NClick>
+              <uix:NGetText DisplayName="Get Text 'CN, 17 thg 11 2024 1 hà…'" sap:VirtualizedContainerService.HintSize="1022,190.66666666666666" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="a3e944cd-4886-44a3-86fd-716ee2a94aec" TextString="[ExtractedTextString]" Version="V4">
+                <uix:NGetText.Target>
+                  <uix:TargetAnchorable BrowserURL="traveloka.com/vi-vn/flight/fullsearch" CVScreenId="ac38df03-0067-4339-9e8d-26b4155cee92" CvTextArea="815, 509, 457, 25" CvType="AnyWordGroup" DesignTimeRectangle="817, 503, 455, 30" DesignTimeScaleFactor="1.5" ElementType="Text" FuzzySelectorArgument="&lt;webctrl isleaf='1' parentid='flight-header-revamp' tag='DIV' type='' class='css-901oao r-a5wbuh r-1b43r93 r-majxgm r-rjixqe r-14gqq1x r-fdjqy7' /&gt;" Guid="981c15f3-1bdb-440c-9293-31d4bb89f605" InformativeScreenshot="46de3c9a27dc19894dc1d33298f5da23.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Một chiều: SGN → DAD, 17 thg 11 2024' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                </uix:NGetText.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NGetText>
+              <uix:NMouseScroll KeyModifiers="{x:Null}" Direction="Down" DisplayName="Mouse Scroll down " sap:VirtualizedContainerService.HintSize="1022,170.66666666666666" sap2010:WorkflowViewState.IdRef="NMouseScroll_5" InteractionMode="HardwareEvents" MovementUnits="40" ScopeIdentifier="a3e944cd-4886-44a3-86fd-716ee2a94aec" Version="V4" />
+              <uix:NMouseScroll KeyModifiers="{x:Null}" Direction="Up" DisplayName="Mouse Scroll" sap:VirtualizedContainerService.HintSize="1022,170.66666666666666" sap2010:WorkflowViewState.IdRef="NMouseScroll_6" InteractionMode="HardwareEvents" MovementUnits="25" Version="V4" />
+              <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[ExtractDataTable]" DisplayName="Extract Table Data 'Extract Table Data'" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='Airline'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='Departure'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column2' Name='Arrival'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column3' Name='Price'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column4' Name='Time'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' idx='5' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='fulltext'&gt;&lt;webctrl tag='div' idx='5' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column1' attr='fulltext'&gt;&lt;webctrl tag='div' idx='5' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column2' attr='fulltext'&gt;&lt;webctrl tag='div' idx='5' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column3' attr='fulltext'&gt;&lt;webctrl tag='div' idx='5' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='h3' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column4' attr='fulltext'&gt;&lt;webctrl tag='div' idx='5' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="1022,191.33333333333334" sap2010:WorkflowViewState.IdRef="NExtractData_3" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="a3e944cd-4886-44a3-86fd-716ee2a94aec" Version="V4">
+                <uix:NExtractData.Target>
+                  <uix:TargetAnchorable BrowserURL="https://www.traveloka.com/vi-vn/flight/fullsearch?ap=SGN.HAN&amp;dt=4-12-2024.NA&amp;ps=1.0.0&amp;sc=ECONOMY" ContentHash="VfT8SckanUOj5TUM2UWTpg" DesignTimeRectangle="769, -187, 1104, 6371" DesignTimeScaleFactor="1.5" FullSelectorArgument="&lt;webctrl id='FLIGHT_SEARCH_RESULT_CONTENT' tag='DIV' /&gt;" Guid="32e9ab78-f87b-457c-a97b-fa918cff616a" InformativeScreenshot="5b60d5e0394d98a7d91af2320528e58e.png" Reference="UYHyyps6D0WiRBG4RzKETQ/oDE_g_xxLE2s1J4BPHFBZg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Một chiều: SGN → HAN, 04 thg 12 2024' /&gt;" SearchSteps="Selector" Version="V5" Visibility="Interactive" />
+                </uix:NExtractData.Target>
+              </uix:NExtractData>
+              <ui:WriteRange AddHeaders="True" DataTable="[ExtractDataTable]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="1022,141.33333333333334" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="Sheet1" StartingCell="A1" WorkbookPath="D:\down\robotic\FINAL\TRAVEL_PROJECT\Data\GiaMayBay.xlsx" />
+            </Sequence>
+          </ActivityAction>
+        </uix:NApplicationCard.Body>
+        <uix:NApplicationCard.TargetApp>
+          <uix:TargetApp Area="0, 0, 0, 0" BrowserType="Edge" ContentHash="U_66qxC9REqs4qa6oCk6jg" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAFUSURBVDhPtdHNK0RRGMfxaygb7iXj4g4pO5spC6EsLO6CbCz9AV7+ABsLQkrKwsIsLCZGWdj6B7C0ItP1kpeamYUUG3krFsf3HM9VlyYm+dWnzsvznNO51/rXJDIFG8NIytLvQ1M7tvGAflmOhPWYDKNhowF7UHhGn6yXoV7PMYFR0/A1bPh4gT7gqSmd8+PLFx2Ml3Ake1l0Sks0bHTjHvqAV3su2K1ZOLmRuXYNX8q/h804DqRY2bOBcuaPw2b9pHEptSyPd8nwM4lMXr910zRsFFTt4pk5RA5IoVJKzW0O9IdpwySm0YMdmAPclUtVPRMoby2/z7xZWj9Ckb6tAi7GcA79695gbvXSOf2ERzd1NSRtxUPDAO7C5hDNh1VT2TopKx6KyzGILZwi/Bu36JWyn0OxflYjujCCdayiVUpKC40xtCAJR5ZLD83mo8v0r7Gsd90a8Y4Kz/U4AAAAAElFTkSuQmCC" InformativeScreenshot="16d74e6e7672d3df0eb86254ef25b011.jpg" Reference="UYHyyps6D0WiRBG4RzKETQ/KpU6-na7ZE6KYIpoJtnXWw" Selector="&lt;html app='msedge.exe' title='Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á' /&gt;" Title="Traveloka - Nền tảng du lịch hàng đầu Đông Nam Á" Url="https://www.traveloka.com/vi-vn" />
+        </uix:NApplicationCard.TargetApp>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </uix:NApplicationCard>
+    </Sequence>
+    <Sequence DisplayName="Xuat du lieu gia" sap:VirtualizedContainerService.HintSize="1124,1676" sap2010:WorkflowViewState.IdRef="Sequence_62">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[ExtractDataTable1]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="672,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1" WorkbookPath="Data\GiaMayBay.xlsx" />
+      <ui:SortDataTable ColumnIndex="{x:Null}" ColumnName="{x:Null}" OutputDataTable="{x:Null}" DataColumn="[ExtractDataTable1.Columns(&quot;Price&quot;)]" DataTable="[ExtractDataTable1]" DisplayName="Sort Data Table" sap:VirtualizedContainerService.HintSize="672,113.33333333333333" sap2010:WorkflowViewState.IdRef="SortDataTable_1" Order="Ascending" SortOrder="Ascending" />
+      <Assign sap:VirtualizedContainerService.HintSize="672,116.66666666666667" sap2010:WorkflowViewState.IdRef="Assign_5">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[emailbody]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">["Top 5 giá vé máy bay rẻ nhất: " + ExtractedTextString + Environment.NewLine]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Sequence DisplayName="xuat ra top 5 gia re" sap:VirtualizedContainerService.HintSize="672,1234" sap2010:WorkflowViewState.IdRef="Sequence_67">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <Assign sap:VirtualizedContainerService.HintSize="638,116.66666666666667" sap2010:WorkflowViewState.IdRef="Assign_8">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Int32">[count]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Int32">0</InArgument>
+          </Assign.Value>
+        </Assign>
+        <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[ExtractDataTable1]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="638,1034.6666666666667" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
+          <ui:ForEachRow.Body>
+            <ActivityAction x:TypeArguments="sd:DataRow">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="604,845.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_68">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[ExtractDataTable1]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="570,785.3333333333334" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
+                  <ui:ForEachRow.Body>
+                    <ActivityAction x:TypeArguments="sd:DataRow">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="536,596" sap2010:WorkflowViewState.IdRef="Sequence_72">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If Condition="[count &lt; 5]" sap:VirtualizedContainerService.HintSize="502,536" sap2010:WorkflowViewState.IdRef="If_1">
+                          <If.Then>
+                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,284" sap2010:WorkflowViewState.IdRef="Sequence_69">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign sap:VirtualizedContainerService.HintSize="434,116.66666666666667" sap2010:WorkflowViewState.IdRef="Assign_11">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[emailbody]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[emailBody + "Hãng: " + CurrentRow("Airline").ToString() + ", Giá: " + Convert.ToDouble(CurrentRow("Price").ToString().Replace("/khách", "").Replace("VND", "").Replace(".", "").Trim()).ToString("N0") + " VND, Khởi hành: " + CurrentRow("Departure").ToString() + ", Đến: " + CurrentRow("Arrival").ToString() + Environment.NewLine]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap:VirtualizedContainerService.HintSize="434,107.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_10">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Int32">[count]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Int32">[count + 1]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,90" sap2010:WorkflowViewState.IdRef="Sequence_70">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEachRow.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:ForEachRow>
+              </Sequence>
+            </ActivityAction>
+          </ui:ForEachRow.Body>
+        </ui:ForEachRow>
+      </Sequence>
+    </Sequence>
+    <Sequence DisplayName="Gui email" sap:VirtualizedContainerService.HintSize="1124,272" sap2010:WorkflowViewState.IdRef="Sequence_55">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Body="[emailbody]" DisplayName="" Email="quynhvdp.583@gmail.com" EnableSSL="True" From="quynhvdp.583@gmail.com" sap:VirtualizedContainerService.HintSize="416,180" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="False" Password="lppklnqsjnuczikc" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="ROBOT TÌM VÉ" To="[in_email]">
+        <ui:SendMail.Files>
+          <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+            <InArgument x:TypeArguments="x:String">D:\down\robotic\FINAL\TRAVEL_PROJECT\Data\GiaMayBay.xlsx</InArgument>
+          </scg:List>
+        </ui:SendMail.Files>
+      </ui:SendMail>
+    </Sequence>
+    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="xoa du lieu excel" sap:VirtualizedContainerService.HintSize="1124,666.6666666666666" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_2">
+      <ueab:ExcelProcessScopeX.Body>
+        <ActivityAction x:TypeArguments="ui:IExcelProcess">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="536,556.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_66">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" SensitivityLabel="{x:Null}" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="502,496.6666666666667" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" ResizeWindow="None" SensitivityOperation="None" WorkbookPath="Data\GiaMayBay.xlsx">
+              <ueab:ExcelApplicationCard.Body>
+                <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Output1" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="468,200" sap2010:WorkflowViewState.IdRef="Sequence_65">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ueab:ClearRangeX DisplayName="Clear Sheet/Range/Table" HasHeaders="False" sap:VirtualizedContainerService.HintSize="434,140" sap2010:WorkflowViewState.IdRef="ClearRangeX_2" TargetRange="[Output1.Sheet(&quot;Sheet1&quot;)]" />
+                  </Sequence>
+                </ActivityAction>
+              </ueab:ExcelApplicationCard.Body>
+            </ueab:ExcelApplicationCard>
+          </Sequence>
+        </ActivityAction>
+      </ueab:ExcelProcessScopeX.Body>
+    </ueab:ExcelProcessScopeX>
+  </Sequence>
+</Activity>
